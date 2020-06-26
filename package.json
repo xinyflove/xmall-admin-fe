@@ -5,7 +5,7 @@
     "repository": "https://github.com/xinyflove/xmall-admin-fe.git",
     "author": "Peak Xin <xinyflove@sina.com>",
     "license": "MIT",
-    "script": {
+    "scripts": {
         "dev": "node_modules/.bin/webpack-dev-server",
         "dist": "node_modules/.bin/webpack -p"
     },

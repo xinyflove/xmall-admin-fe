@@ -1,13 +1,31 @@
 /*
  * @Author: Peak Xin 
- * @Date: 2020-06-20 22:50:54 
+ * @Date: 2020-06-26 22:56:49 
  * @Last Modified by: Peak Xin
- * @Last Modified time: 2020-06-26 23:08:07
+ * @Last Modified time: 2020-06-26 23:09:44
  */
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import './index.scss';
+
+/**
+ * 基础jsx、样式
+ */
+let style = {
+    color: 'r' + 'ed'
+};
+let jsx = <div className='jsx' style={style}>jsx....</div>;
+
+ReactDOM.render( 
+    jsx,
+    document.getElementById('app')
+);
+
+/**
+ * 数据逻辑处理
+ */
 let name = 'Peak';
 let names = ['Peak', 'Tony', 'Jack'];
 let flag = false;

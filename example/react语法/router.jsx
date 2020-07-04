@@ -1,10 +1,36 @@
 /*
  * @Author: Peak Xin 
- * @Date: 2020-06-20 22:50:54 
+ * @Date: 2020-07-04 23:19:16 
  * @Last Modified by: Peak Xin
- * @Last Modified time: 2020-07-05 00:24:28
+ * @Last Modified time: 2020-07-05 00:26:25
  */
 
+/* 页面路由 */
+window.location.href = 'https://baidu.com';
+history.back();
+
+/* hash 路由 */
+window.location = '#hash';
+window.onhashchange = function(){
+    console.log('current hash:', window.location.hash);
+}
+
+/* hs 路由 */
+// 推荐一个状态
+history.pushState('name', 'title', '/path');
+// 替换一个状态
+history.replaceState('name', 'title', '/path');
+// popstate
+window.onpopstate = function(){
+    console.log(window.location.href);
+    console.log(window.location.pathname);
+    console.log(window.location.hash);
+    console.log(window.location.search);
+}
+
+/**
+ * React-router
+ */
 import React from 'react';
 import ReactDOM from 'react-dom';
 //import { HashRouter as Router, Route, Link } from 'react-router-dom';

@@ -2,7 +2,7 @@
  * @Author: Peak Xin 
  * @Date: 2020-06-20 22:50:54 
  * @Last Modified by: Peak Xin
- * @Last Modified time: 2020-07-06 22:22:29
+ * @Last Modified time: 2020-07-07 23:32:13
  */
 
 import React from 'react';
@@ -20,7 +20,11 @@ class App extends React.Component {
                 <Layout>
                     <Switch>
                         <Route exact path='/' component={Home} />
-                        <Redirect from='*' to='/' />
+                        <Route exact path='/product' component={Home} />
+                        <Route exact path='/product-category' component={Home} />
+                        <Route exact path='/order' component={Home} />
+                        <Route exact path='/user' component={Home} />
+                        {/*<Redirect from='*' to='/' />*/}
                     </Switch>
                 </Layout>
             </Router>

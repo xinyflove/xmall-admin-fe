@@ -2,10 +2,11 @@
  * @Author: Peak Xin 
  * @Date: 2020-07-06 22:29:17 
  * @Last Modified by: Peak Xin
- * @Last Modified time: 2020-07-06 22:52:54
+ * @Last Modified time: 2020-07-07 22:40:15
  */
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class SideNav extends React.Component {
     render() {

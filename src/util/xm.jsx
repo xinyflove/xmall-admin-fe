@@ -32,8 +32,29 @@ class XUtil {
         });
     }
 
+    /**
+     * 跳转登录
+     */
     doLogin() {
         window.location.href = '/login?redirect=' + encodeURIComponent(window.location.pathname);
+    }
+
+    /**
+     * 获取URL参数
+     */
+    getUrlParam(name) {
+        // url问号和问号后的字符串，通过问号分割取第二个数组的数据
+        let queryString = window.location.search.split('?')[1] || '',
+            reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"),
+            result = queryString.match(reg);
+        return result ? decodeURIComponent(result[2]): null;
+    }
+
+    /**
+     * 错误提示
+     */
+    errorTips(errMsg) {
+        alert(errMsg || '操作失败');
     }
 }
 

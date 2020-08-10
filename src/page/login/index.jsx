@@ -18,8 +18,13 @@ class Login extends React.Component {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            redirect: _xm.getUrlParam('redirect') || ''
         };
+    }
+
+    componentWillMount() {
+        document.title = '登录 - XMall';
     }
     
     /**
@@ -34,15 +39,40 @@ class Login extends React.Component {
         });
     }
 
-    onSubmit(e) {
-        _user.login({
-            username: this.state.username,
-            password: this.state.password
-        }).then((res => {
+    /**
+     * 监听Input按键事件
+     * @param {*} e 
+     */
+    onInputKeyUp(e) {
+        if (e.keyCode === 13) {
+            this.onSubmit();
+        }
+    }
 
-        }, (err) => {
-            
-        }));
+    /**
+     * 当用户提交表单
+     */
+    onSubmit() {
+        let loginInfo = {
+                username: this.state.username,
+                password: this.state.password
+            },
+            checkResult = _user.checkLoginInfo(loginInfo);
+        
+        // 验证通过
+        if (checkResult.status) {
+            _user.login(loginInfo).then((res) => {
+                //console.log(this.state.redirect);
+                this.props.history.push(this.state.redirect);
+            }, (errMsg) => {
+                _xm.errorTips(errMsg);
+            });
+        }
+        // 验证不通过
+        else {
+            _xm.errorTips(checkResult.msg);
+        }
+        
     }
 
     render(){
@@ -53,12 +83,12 @@ class Login extends React.Component {
                     <div className="panel-body">
                         <div>
                             <div className="form-group">
-                                <input type="text" className="form-control" placeholder="请输入用户名" name="username" onChange={e => this.onInputChange(e)} />
+                                <input type="text" className="form-control" placeholder="请输入用户名" name="username" onChange={e => this.onInputChange(e)} onKeyUp={e => this.onInputKeyUp(e)} />
                             </div>
                             <div className="form-group">
-                                <input type="password" className="form-control" placeholder="请输入密码" name="password" onChange={e => this.onInputChange(e)} />
+                                <input type="password" className="form-control" placeholder="请输入密码" name="password" onChange={e => this.onInputChange(e)} onKeyUp={e => this.onInputKeyUp(e)} />
                             </div>
-                            <button className="btn btn-lg btn-primary btn-block" onClick={e => {this.onSubmit(e)}}>登录</button>
+                            <button className="btn btn-lg btn-primary btn-block" onClick={e => {this.onSubmit()}}>登录</button>
                         </div>
                     </div>
                 </div>

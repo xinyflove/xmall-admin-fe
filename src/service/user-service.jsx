@@ -2,7 +2,7 @@
  * @Author: Peak Xin 
  * @Date: 2020-08-09 23:53:35 
  * @Last Modified by: Peak Xin
- * @Last Modified time: 2020-08-09 23:59:00
+ * @Last Modified time: 2020-08-15 23:14:13
  */
 
 import XUtil from 'util/xm.jsx'
@@ -19,7 +19,7 @@ class User {
             type: 'POST',
             url: '/manage/user/login.do',
             data: loginInfo
-        })
+        });
     }
 
     /**
@@ -49,6 +49,16 @@ class User {
             status: true,
             msg: '验证通过'
         }
+    }
+
+    /**
+     * 退出登录
+     */
+    logout() {
+        return _xm.request({
+            type: 'POST',
+            url: '/user/logout.do'
+        });
     }
  }
 

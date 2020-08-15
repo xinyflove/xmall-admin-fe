@@ -2,7 +2,7 @@
  * @Author: Peak Xin 
  * @Date: 2020-07-07 23:52:29 
  * @Last Modified by: Peak Xin
- * @Last Modified time: 2020-08-09 23:46:01
+ * @Last Modified time: 2020-08-15 23:18:40
  */
 
 class XUtil {
@@ -55,6 +55,49 @@ class XUtil {
      */
     errorTips(errMsg) {
         alert(errMsg || '操作失败');
+    }
+
+    /**
+     * 本地存储
+     * @param {*} name 
+     * @param {*} data 
+     */
+    setStorage(name, data) {
+        let dataType = typeof data;
+        // json类型
+        if (dataType === 'object') {
+            window.localStorage.setItem(name, JSON.stringify(data));
+        }
+        // 基础类型
+        else if (['number', 'string', 'boolean'].indexOf(dataType) >= 0) {
+            window.localStorage.setItem(name, data);
+        }
+        // 其他不支持类型
+        else {
+            alert('该类型不能用于本地存储');
+        }
+    }
+
+    /**
+     * 获取本地存储
+     * @param {*} name 
+     */
+    getStorage(name) {
+        let data = window.localStorage.getItem(name);
+        if (data) {
+            return JSON.parse(data);
+        }
+        else {
+            return '';
+        }
+    }
+
+    /**
+     * 删除本地存储
+     * @param {*} name 
+     */
+    removeStorage(name) {
+        window.localStorage.removeItem(name);
     }
 }
 
